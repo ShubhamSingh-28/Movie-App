@@ -9,8 +9,7 @@ import TopRated from "../components/TopRated"
 function Home() {
  
   return (
-    <div className=" text-white">
-      
+    <div className=" text-white"> 
       <Hero />
       <TrandingComponent  />
       <Populer/>
