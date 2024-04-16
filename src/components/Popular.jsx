@@ -32,6 +32,12 @@ function Populer() {
       });
     }
   }, [dispatch,tab]);
+
+  if (!data  || Object.keys(data).length === 0 ) {
+    return <div className=" flex justify-center">
+    <span className="loading loading-dots loading-lg"></span>
+    </div>;
+  }
   return (
     <div className='  flex items-center md:justify-center  w-full'>
       <div className='  w-full '>

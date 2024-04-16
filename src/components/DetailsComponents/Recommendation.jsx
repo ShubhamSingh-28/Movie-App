@@ -24,6 +24,13 @@ function Recommendation() {
     console.error("Error fetching data:", error);
   })
     }, [dispatch, mediaType, id]);
+
+    if (!data  || Object.keys(data).length === 0 ) {
+      return <div className=" flex justify-center">
+      <span className="loading loading-dots loading-lg"></span>
+      </div>;
+    }
+
   
  // console.log(data.results);
   return (

@@ -2,10 +2,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import { FaRegCirclePlay } from "react-icons/fa6";
-//import { PlayIcon } from "./Playbtn";
 import { Link } from "react-router-dom";
 
+
 export default function VideoCard({data}) {
+  
   if (!data) {
     return null;
   }
@@ -32,8 +33,8 @@ export default function VideoCard({data}) {
         {data.map((d, index) => (
           
          <div key={index}  className=" gap-2">      
-              <img  src={`https://img.youtube.com/vi/${d.key}/mqdefault.jpg` } alt="" className=" md:h-56 md:w-[215px] h-48 w-full   transition duration-300 transform hover:scale-105 "/>              
-              <Link to={`/video/${d.id}`}>
+              <img  src={`https://img.youtube.com/vi/${d.key}/mqdefault.jpg` } alt="" className=" md:h-56 md:w-[215px] h-48 w-full   transition duration-300 transform hover:scale-105 "/> 
+              <Link to={`/video/${d.key}`}>
               <FaRegCirclePlay className=" w-16 h-16 relative md:bottom-[140px] bottom-[125px] md:left-16 left-[100px] cursor-pointer"/>
               </Link>
               <p className="text-md font-semibold relative bottom-12">{ d.name}</p>          

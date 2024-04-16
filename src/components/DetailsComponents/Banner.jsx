@@ -5,11 +5,13 @@ import { Link, useParams } from "react-router-dom";
 import { fetchDataDetails } from "../../utils/dataSlice";
 import CircleRating from "../CircleRating";
 import { FaRegCirclePlay } from "react-icons/fa6";
+import { fetchDataVideos } from "../../utils/dataSlice";
 export default function Banner() {
 
     const [data, setData] = useState([]);
+    const [data2, setData2] = useState([]);
     const { mediaType,  id } = useParams();
-    //console.log(mediaType+ id);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +24,26 @@ export default function Banner() {
      })
        }, [dispatch, mediaType, id]);
 
-       //console.log(data);
+
+       useEffect(() => {
+        dispatch(fetchDataVideos({mediaType, id}))
+        .then((response) => {
+         setData2(response.payload);
+       })
+       .catch((error) => {
+         console.error("Error fetching data:", error);
+       })
+         }, [dispatch, mediaType, id]);
+
+         if (!data || !data2 || Object.keys(data).length === 0 || Object.keys(data2).length === 0) {
+          return <div className=" flex justify-center">
+          <span className="loading loading-dots loading-lg"></span>
+          </div>;
+        }
+  
+         //console.log(data);
+  
+       //console.log(data2);
   return (
     <div className="md:w-3/4 my-14 mx-auto gap-2 md:flex text-white">
   <div className="w-full">
@@ -43,7 +64,7 @@ export default function Banner() {
     <CircleRating  rating={data.vote_average} />
       </div>
       <div className=" flex gap-4">
-        <Link to={`/video/${data.id}`}>
+        <Link to={`/video/${data2?.results[0].key}`}>
     <FaRegCirclePlay className=" w-16 h-16 text-2xl cursor-pointer"/> 
     </Link>
     <p className=" flex items-center text-xl font-semibold">Watch Trailer</p>

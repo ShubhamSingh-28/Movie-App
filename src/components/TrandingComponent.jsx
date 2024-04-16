@@ -37,7 +37,11 @@ function TrandingComponent() {
   useEffect(() => {
     ApifetchMemo()
   }, [ApifetchMemo]);
-
+  if (!data  || Object.keys(data).length === 0 ) {
+    return <div className=" flex justify-center">
+    <span className="loading loading-dots loading-lg"></span>
+    </div>;
+  }
  // console.log(data);
   return (
     <div className="my-6 flex items-center md:justify-center w-full">
